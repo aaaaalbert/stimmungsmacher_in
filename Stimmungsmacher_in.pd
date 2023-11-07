@@ -1,0 +1,61 @@
+#N canvas 235 353 1879 625 12;
+#X obj 66 25 inlet;
+#X obj 66 267 outlet;
+#X obj 66 62 -;
+#X obj 147 76 mod 12;
+#X obj 66 158 *;
+#X msg 164 243 read Stimmungen/\$1;
+#X msg 164 181 get \$1;
+#X obj 164 157 r \$0-Stimmung;
+#X obj 147 120 tabread \$0-Stimmung;
+#X obj 164 267 array define \$0-Stimmung;
+#X obj 552 257 cnv 15 20 20 empty empty empty 20 12 0 14 #e0e0e0 #404040
+0;
+#X obj 566 99 hradio 15 1 1 11 empty empty Grundton\\\ (c-h) 0 -8 0
+10 #fcfcfc #000000 #000000 0;
+#X obj 758 123 s \$0-Grundton;
+#X obj 565 145 vradio 15 1 1 5 empty empty Stimmung 0 -8 0 10 #fcfcfc
+#000000 #000000 0;
+#X obj 759 222 s \$0-Stimmung;
+#X text 586 143 Gleichschwebend, f 19;
+#X text 586 202 Hammond;
+#X obj 132 36 r \$0-Grundton;
+#X obj 66 219 +;
+#X obj 66 120 mtof;
+#X obj 66 189 ftom;
+#X text 65 1 in: MIDI-Noten;
+#X text 63 292 out: MIDI-Noten + Versatz (Nachkommastellen) nach Stimmung
+;
+#X text 273 168 Tabelle für Stimmungen konfigurieren;
+#X text 3 100 c- Frequenz;
+#X text 293 119 Stimmungsfaktor;
+#X text 250 5 Vefahren: (Frequenz des c der passenden Oktave) mal (Stimmungsfaktor
+für Einzelton) wird MIDI-Note. Verschiebung des Grundtons ist möglich.
+, f 52;
+#X text 3 150 Ton- frequenz;
+#X obj 66 96 -;
+#X text 586 188 Rein;
+#X text 586 158 Obertonreihe;
+#X text 586 173 Pythagoräisch;
+#X obj 164 205 list store Gleichschwebend Obertonreihe Pythagoräisch
+Rein Hammond, f 40;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 28 0;
+#X connect 3 0 28 1;
+#X connect 3 0 8 0;
+#X connect 4 0 20 0;
+#X connect 5 0 9 0;
+#X connect 6 0 32 0;
+#X connect 7 0 6 0;
+#X connect 8 0 4 1;
+#X connect 11 0 12 0;
+#X connect 13 0 14 0;
+#X connect 17 0 2 1;
+#X connect 17 0 18 1;
+#X connect 18 0 1 0;
+#X connect 19 0 4 0;
+#X connect 20 0 18 0;
+#X connect 28 0 19 0;
+#X connect 32 0 5 0;
+#X coords 0 -1 1 1 200 200 1 550 50;
